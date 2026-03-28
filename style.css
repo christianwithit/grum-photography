@@ -26,32 +26,28 @@
   --ease-elegant: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   
   /* ===== TYPE SCALE TOKENS ===== */
+  /* Based on Major Third (1.25) ratio for consistent visual hierarchy */
+  
   /* Display Sizes (Fluid, Cormorant Garamond) */
-  --font-size-display-2xl: clamp(3.5rem, 7vw, 6.5rem);    /* 56px → 104px | Hero */
-  --font-size-display-xl: clamp(3rem, 6vw, 5.5rem);       /* 48px → 88px  | H1 */
-  --font-size-display-lg: clamp(2.5rem, 4vw, 3.5rem);     /* 40px → 56px  | H2 */
-  --font-size-display-md: clamp(2rem, 3vw, 2.8rem);       /* 32px → 44.8px| H3 */
-  --font-size-display-sm: clamp(1.5rem, 2.5vw, 2rem);     /* 24px → 32px  | H3 alt */
+  /* Scales responsively between mobile and desktop */
+  --font-size-display-2xl: clamp(3rem, 7vw, 6rem);        /* 48px → 96px  | Hero */
+  --font-size-display-xl: clamp(2.5rem, 6vw, 4.75rem);    /* 40px → 76px  | H1 */
+  --font-size-display-lg: clamp(2rem, 4vw, 3.75rem);      /* 32px → 60px  | H2 */
+  --font-size-display-md: clamp(1.625rem, 3vw, 3rem);     /* 26px → 48px  | H3 */
+  --font-size-display-sm: clamp(1.25rem, 2.5vw, 2.375rem);/* 20px → 38px  | H4 */
   
   /* Heading Sizes (Fixed, Cormorant Garamond) */
-  --font-size-h4: 1.5rem;      /* 24px */
-  --font-size-h5: 1.25rem;     /* 20px */
-  --font-size-h6: 1rem;        /* 16px */
+  --font-size-h4: 1.5rem;      /* 24px | Component headings */
+  --font-size-h5: 1.25rem;     /* 20px | Subheadings */
+  --font-size-h6: 1.125rem;    /* 18px | Small headings */
   
   /* Body Sizes (Jost) */
-  --font-size-body-lg: 1.125rem;   /* 18px | Large body */
-  --font-size-body: 1rem;          /* 16px | Default */
-  --font-size-body-sm: 0.875rem;   /* 14px | Small body */
+  --font-size-body-lg: 1.125rem;   /* 18px | Intro text, emphasis */
+  --font-size-body: 1rem;          /* 16px | Default body text */
+  --font-size-body-sm: 0.875rem;   /* 14px | Secondary text, captions */
   
   /* UI Sizes (Jost) */
-  --font-size-ui: 0.875rem;        /* 14px | Buttons, nav */
-  --font-size-label: 0.75rem;      /* 12px | Labels, tags */
-  --font-size-caption: 0.625rem;   /* 10px | Captions (minimal use) */
-  
-  /* Special Sizes */
-  --font-size-nav-logo: 1.8rem;    /* 28.8px | Brand logo */
-  --font-size-footer-logo: 2rem;   /* 32px | Footer logo */
-  --font-size-mobile-menu: 2.8rem; /* 44.8px | Mobile menu links */
+  --font-size-label: 0.75rem;      /* 12px | Buttons, nav, tags, labels */
   
   /* ===== LINE HEIGHT TOKENS ===== */
   --line-height-tight: 1.1;     /* Large display text */
@@ -61,16 +57,14 @@
   --line-height-loose: 2;       /* Spacious text */
   
   /* ===== LETTER SPACING TOKENS ===== */
-  --letter-spacing-tighter: -0.02em;   /* Hero, large display */
-  --letter-spacing-tight: -0.015em;    /* H2 */
-  --letter-spacing-slight: -0.01em;    /* H1, H3 */
-  --letter-spacing-normal: 0;          /* Default */
-  --letter-spacing-wide: 0.01em;       /* Body text */
-  --letter-spacing-wider: 0.05em;      /* Slight emphasis */
-  --letter-spacing-widest: 0.15em;     /* Nav logo */
-  --letter-spacing-ultra: 0.22em;      /* Nav links */
-  --letter-spacing-mega: 0.28em;       /* Buttons, labels */
-  --letter-spacing-extreme: 0.35em;    /* Small caps, eyebrows */
+  /* Negative values for large text, positive for small/uppercase */
+  --letter-spacing-tighter: -0.02em;   /* -2% | Hero, largest display */
+  --letter-spacing-tight: -0.01em;     /* -1% | H1, H2, large headings */
+  --letter-spacing-normal: 0;          /*  0% | Default, body text */
+  --letter-spacing-wide: 0.05em;       /*  5% | Slight emphasis */
+  --letter-spacing-wider: 0.15em;      /* 15% | Logos, branding */
+  --letter-spacing-widest: 0.25em;     /* 25% | Buttons, nav, all-caps UI */
+  --letter-spacing-extreme: 0.35em;    /* 35% | Eyebrows, small caps, labels */
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -91,7 +85,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
-  letter-spacing: var(--letter-spacing-slight);
+  letter-spacing: var(--letter-spacing-tight);
   line-height: var(--line-height-tight);
 }
 
@@ -108,23 +102,27 @@ h2 {
 }
 
 h3 {
-  font-size: var(--font-size-display-sm);
+  font-size: var(--font-size-display-md);
   font-weight: 400;
+  line-height: var(--line-height-snug);
 }
 
 h4 {
   font-size: var(--font-size-h4);
   font-weight: 400;
+  line-height: var(--line-height-snug);
 }
 
 h5 {
   font-size: var(--font-size-h5);
   font-weight: 400;
+  line-height: var(--line-height-snug);
 }
 
 h6 {
   font-size: var(--font-size-h6);
   font-weight: 500;
+  line-height: var(--line-height-normal);
 }
 
 em {
@@ -134,8 +132,9 @@ em {
 }
 
 p {
+  font-size: var(--font-size-body);
   line-height: var(--line-height-relaxed);
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
 }
 
 /* ===== NAVIGATION ===== */
@@ -160,9 +159,9 @@ p {
 
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
-  font-size: var(--font-size-nav-logo);
+  font-size: var(--font-size-display-md);
   font-weight: 400;
-  letter-spacing: var(--letter-spacing-widest);
+  letter-spacing: var(--letter-spacing-wider);
   color: var(--text-dark);
   text-decoration: none;
   text-transform: uppercase;
@@ -186,7 +185,7 @@ p {
   font-family: 'Jost', sans-serif;
   font-size: var(--font-size-label);
   font-weight: 500;
-  letter-spacing: var(--letter-spacing-ultra);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   text-decoration: none;
   color: var(--text-dark);
@@ -218,7 +217,7 @@ p {
   background: var(--text-dark) !important;
   color: var(--warm-white) !important;
   padding: 0.7rem 1.6rem !important;
-  letter-spacing: var(--letter-spacing-mega) !important;
+  letter-spacing: var(--letter-spacing-widest) !important;
   transition: all 0.4s var(--ease-smooth) !important;
   border-radius: 0;
 }
@@ -293,9 +292,9 @@ p {
 
 #mobile-menu a {
   font-family: 'Cormorant Garamond', serif;
-  font-size: var(--font-size-mobile-menu);
+  font-size: var(--font-size-display-lg);
   font-weight: 300;
-  letter-spacing: var(--letter-spacing-wider);
+  letter-spacing: var(--letter-spacing-wide);
   text-decoration: none;
   color: var(--text-dark);
   transition: all 0.3s var(--ease-smooth);
@@ -340,7 +339,7 @@ p {
   right: 2rem;
   background: none;
   border: none;
-  font-size: var(--font-size-footer-logo);
+  font-size: var(--font-size-display-md);
   cursor: pointer;
   color: var(--text-dark);
   width: 44px;
@@ -425,7 +424,7 @@ p {
   font-size: var(--font-size-body);
   color: rgba(255,255,255,0.85);
   font-weight: 300;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
   line-height: var(--line-height-relaxed);
   max-width: 560px;
   margin-bottom: 3rem;
@@ -437,7 +436,7 @@ p {
   color: white;
   padding: 1rem 2.8rem;
   font-size: var(--font-size-label);
-  letter-spacing: var(--letter-spacing-mega);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   text-decoration: none;
   transition: all 0.4s var(--ease-smooth);
@@ -557,7 +556,7 @@ p {
   font-weight: 300;
   color: white;
   margin-bottom: 0.8rem;
-  letter-spacing: var(--letter-spacing-slight);
+  letter-spacing: var(--letter-spacing-tight);
   transform: translateY(0);
   transition: transform 0.4s var(--ease-smooth);
 }
@@ -567,8 +566,8 @@ p {
 }
 
 .gallery-card-link {
-  font-size: var(--font-size-caption);
-  letter-spacing: var(--letter-spacing-mega);
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   color: rgba(255,255,255,0.85);
   text-decoration: none;
@@ -642,7 +641,7 @@ p {
   font-size: var(--font-size-body);
   font-weight: 300;
   margin-bottom: 3rem;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
 }
 
 /* ===== PRESS LOGOS ===== */
@@ -734,8 +733,8 @@ p {
 }
 
 .testimonial-name {
-  font-size: var(--font-size-caption);
-  letter-spacing: var(--letter-spacing-mega);
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 1.2rem;
@@ -749,7 +748,7 @@ p {
   line-height: var(--line-height-relaxed);
   color: var(--text-mid);
   font-style: italic;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
 }
 
 /* ===== BLOG PREVIEW ===== */
@@ -794,8 +793,8 @@ p {
 }
 
 .blog-tag {
-  font-size: var(--font-size-caption);
-  letter-spacing: var(--letter-spacing-mega);
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 0.8rem;
@@ -810,7 +809,7 @@ p {
   line-height: var(--line-height-snug);
   color: var(--text-dark);
   transition: color 0.3s var(--ease-smooth);
-  letter-spacing: var(--letter-spacing-slight);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .blog-card:hover .blog-card-title { 
@@ -840,14 +839,14 @@ p {
   font-weight: 300;
   color: white;
   margin-bottom: 1rem;
-  letter-spacing: var(--letter-spacing-slight);
+  letter-spacing: var(--letter-spacing-tight);
   position: relative;
 }
 
 .email-section p {
   color: rgba(255,255,255,0.65);
   font-size: var(--font-size-body-sm);
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
   margin-bottom: 3.5rem;
   font-weight: 300;
   position: relative;
@@ -871,7 +870,7 @@ p {
   color: white;
   font-family: 'Jost', sans-serif;
   font-size: var(--font-size-body-sm);
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
   outline: none;
   transition: all 0.3s var(--ease-smooth);
   backdrop-filter: blur(10px);
@@ -894,7 +893,7 @@ p {
   border: none;
   font-family: 'Jost', sans-serif;
   font-size: var(--font-size-label);
-  letter-spacing: var(--letter-spacing-mega);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   font-weight: 500;
   cursor: pointer;
@@ -942,7 +941,7 @@ p {
 }
 
 .cta-banner h2 {
-  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-size: var(--font-size-display-2xl);
   font-weight: 300;
   margin-bottom: 3rem;
   line-height: var(--line-height-tight);
@@ -956,7 +955,7 @@ p {
   color: white;
   padding: 1.1rem 3.2rem;
   font-size: var(--font-size-label);
-  letter-spacing: var(--letter-spacing-mega);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   text-decoration: none;
   transition: all 0.4s var(--ease-smooth);
@@ -991,7 +990,7 @@ p {
   color: var(--text-dark);
   padding: 1rem 2.8rem;
   font-size: var(--font-size-label);
-  letter-spacing: var(--letter-spacing-mega);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   text-decoration: none;
   transition: all 0.4s var(--ease-smooth);
@@ -1027,7 +1026,7 @@ p {
   color: white;
   padding: 1.1rem 3.2rem;
   font-size: var(--font-size-label);
-  letter-spacing: var(--letter-spacing-mega);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   text-decoration: none;
   transition: all 0.4s var(--ease-smooth);
@@ -1071,9 +1070,9 @@ footer::before {
 
 .footer-logo {
   font-family: 'Cormorant Garamond', serif;
-  font-size: var(--font-size-footer-logo);
+  font-size: var(--font-size-display-md);
   font-weight: 400;
-  letter-spacing: var(--letter-spacing-widest);
+  letter-spacing: var(--letter-spacing-wider);
   color: var(--text-dark);
   text-transform: uppercase;
   text-decoration: none;
@@ -1091,7 +1090,7 @@ footer::before {
   color: var(--text-light);
   line-height: var(--line-height-relaxed);
   font-weight: 300;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
 }
 
 .footer-heading {
@@ -1240,7 +1239,7 @@ footer::before {
   line-height: var(--line-height-relaxed);
   font-size: var(--font-size-body);
   font-weight: 300;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
 }
 
 .about-image-grid {
@@ -1302,7 +1301,7 @@ footer::before {
   font-weight: 400;
   color: var(--text-dark);
   line-height: var(--line-height-normal);
-  letter-spacing: var(--letter-spacing-slight);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 /* Awards */
@@ -1354,8 +1353,8 @@ footer::before {
 }
 
 .award-pub {
-  font-size: var(--font-size-caption);
-  letter-spacing: var(--letter-spacing-mega);
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 0.8rem;
@@ -1368,7 +1367,7 @@ footer::before {
   font-weight: 300;
   color: white;
   margin-bottom: 1rem;
-  letter-spacing: var(--letter-spacing-slight);
+  letter-spacing: var(--letter-spacing-tight);
   transition: transform 0.4s var(--ease-smooth);
 }
 
@@ -1377,8 +1376,8 @@ footer::before {
 }
 
 .award-link {
-  font-size: var(--font-size-caption);
-  letter-spacing: var(--letter-spacing-mega);
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   color: rgba(255,255,255,0.75);
   text-decoration: none;
@@ -1466,7 +1465,7 @@ footer::before {
   line-height: var(--line-height-relaxed);
   font-weight: 300;
   margin-bottom: 2.5rem;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
 }
 
 .service-includes {
@@ -1508,7 +1507,7 @@ footer::before {
   font-size: var(--font-size-h5);
   color: var(--text-dark);
   margin-bottom: 2.5rem;
-  letter-spacing: var(--letter-spacing-slight);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 /* Process */
@@ -1572,7 +1571,7 @@ footer::before {
   font-size: var(--font-size-h5);
   font-weight: 400;
   margin-bottom: 1.2rem;
-  letter-spacing: var(--letter-spacing-slight);
+  letter-spacing: var(--letter-spacing-tight);
   position: relative;
 }
 
@@ -1581,7 +1580,7 @@ footer::before {
   color: var(--text-mid);
   line-height: var(--line-height-relaxed);
   font-weight: 300;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
   position: relative;
 }
 
@@ -1616,7 +1615,7 @@ footer::before {
   border: none;
   width: 100%;
   text-align: left;
-  letter-spacing: var(--letter-spacing-slight);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .faq-question:hover { 
@@ -1647,7 +1646,7 @@ footer::before {
   color: var(--text-mid);
   line-height: var(--line-height-relaxed);
   font-weight: 300;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
 }
 
 .faq-item.open .faq-answer { 
@@ -1685,7 +1684,7 @@ footer::before {
   color: white;
   margin-bottom: 3.5rem;
   line-height: var(--line-height-snug);
-  letter-spacing: var(--letter-spacing-slight);
+  letter-spacing: var(--letter-spacing-tight);
   position: relative;
 }
 
@@ -1709,7 +1708,7 @@ footer::before {
   color: rgba(255,255,255,0.85);
   font-weight: 300;
   line-height: var(--line-height-relaxed);
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
 }
 
 .contact-form-col {
@@ -1721,7 +1720,7 @@ footer::before {
   font-size: var(--font-size-display-md);
   font-weight: 300;
   margin-bottom: 3.5rem;
-  letter-spacing: var(--letter-spacing-slight);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .form-group {
@@ -1730,8 +1729,8 @@ footer::before {
 
 .form-group label {
   display: block;
-  font-size: var(--font-size-caption);
-  letter-spacing: var(--letter-spacing-mega);
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   color: var(--text-mid);
   margin-bottom: 0.8rem;
@@ -1750,7 +1749,7 @@ footer::before {
   outline: none;
   transition: all 0.3s var(--ease-smooth);
   font-weight: 300;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.01em;
 }
 
 .form-group input:focus,
