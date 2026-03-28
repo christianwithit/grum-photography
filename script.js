@@ -1,4 +1,4 @@
-// Amora Photo Co. - Main JavaScript
+// Grum Photography - Main JavaScript
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -53,13 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update page title
     const titles = {
-      home: 'Amora Photo Co.',
-      about: 'About | Amora Photo Co.',
-      services: 'Services | Amora Photo Co.',
-      galleries: 'Galleries | Amora Photo Co.',
-      contact: 'Contact | Amora Photo Co.'
+      home: 'Grum Photography | Uganda',
+      about: 'About | Grum Photography',
+      services: 'Services | Grum Photography',
+      galleries: 'Galleries | Grum Photography',
+      contact: 'Contact | Grum Photography'
     };
-    document.title = titles[pageId] || 'Amora Photo Co.';
+    document.title = titles[pageId] || 'Grum Photography | Uganda';
 
     // Update URL hash
     history.pushState({ page: pageId }, '', pageId === 'home' ? '#' : '#' + pageId);
