@@ -142,36 +142,67 @@ p {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  transition: background 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth), padding 0.4s var(--ease-smooth);
-  padding: 1.8rem 3rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* Minimal glassmorphism - barely there */
+  background: linear-gradient(
+    180deg,
+    rgba(253, 250, 247, 0.75) 0%,
+    rgba(253, 250, 247, 0.65) 100%
+  );
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border-bottom: 1px solid rgba(196, 149, 106, 0.08);
 }
 
 #navbar.scrolled {
-  background: rgba(253, 250, 247, 0.98);
-  box-shadow: 0 1px 30px rgba(44,36,32,0.06);
-  padding: 1.1rem 3rem;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  padding: 0.75rem 3rem;
+  background: linear-gradient(
+    180deg,
+    rgba(253, 250, 247, 0.92) 0%,
+    rgba(253, 250, 247, 0.88) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(196, 149, 106, 0.15);
+  box-shadow: 0 4px 24px rgba(44, 36, 32, 0.06);
 }
 
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
   font-size: var(--font-size-display-md);
-  font-weight: 400;
-  letter-spacing: var(--letter-spacing-wider);
+  font-weight: 500;
+  letter-spacing: 0.08em;
   color: var(--text-dark);
   text-decoration: none;
   text-transform: uppercase;
-  transition: color 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
+  position: relative;
+}
+
+.nav-logo::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-dark) 100%);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-logo:hover {
   color: var(--accent);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  letter-spacing: 0.12em;
+}
+
+.nav-logo:hover::before {
+  width: 100%;
 }
 
 .nav-links {
@@ -189,20 +220,41 @@ p {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--text-dark);
-  transition: color 0.3s var(--ease-smooth);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  padding-bottom: 2px;
+  padding-bottom: 4px;
+  opacity: 0.85;
 }
 
 .nav-links a::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0;
-  height: 1px;
-  background: var(--accent);
-  transition: width 0.4s var(--ease-elegant);
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(196, 149, 106, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.nav-links a:hover::before {
+  width: 140%;
+  height: 200%;
 }
 
 .nav-links a:hover::after,
@@ -210,27 +262,52 @@ p {
   width: 100%;
 }
 
-.nav-links a:hover { color: var(--accent); }
-.nav-links a.active { color: var(--accent); }
+.nav-links a:hover { 
+  color: var(--accent);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.nav-links a.active { 
+  color: var(--accent);
+  opacity: 1;
+}
 
 .nav-cta {
-  background: var(--text-dark) !important;
+  background: linear-gradient(135deg, var(--text-dark) 0%, #1a1410 100%) !important;
   color: var(--warm-white) !important;
-  padding: 0.7rem 1.6rem !important;
+  padding: 0.8rem 1.8rem !important;
   letter-spacing: var(--letter-spacing-widest) !important;
-  transition: all 0.4s var(--ease-smooth) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(44, 36, 32, 0.15);
 }
 
 .nav-cta::after {
   display: none !important;
 }
 
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.nav-cta:hover::before {
+  left: 0;
+}
+
 .nav-cta:hover { 
-  background: var(--accent) !important; 
-  color: white !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(196, 149, 106, 0.3);
+  box-shadow: 0 8px 24px rgba(196, 149, 106, 0.3);
 }
 
 /* Hamburger */
