@@ -18,15 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // Hamburger toggle
   if (hamburger) {
     hamburger.addEventListener('click', () => {
-      mobileMenu.classList.add('open');
-      document.body.style.overflow = 'hidden';
+      const isOpen = mobileMenu.classList.contains('open');
+      if (isOpen) {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      } else {
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
     });
   }
 
-  if (mobileClose) {
-    mobileClose.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      document.body.style.overflow = '';
+  // Close mobile menu when clicking outside or on a link
+  if (mobileMenu) {
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu || e.target.hasAttribute('data-page')) {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      }
     });
   }
 
